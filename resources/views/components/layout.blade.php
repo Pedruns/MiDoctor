@@ -51,6 +51,26 @@
           <li><a href="#">Equipo</a></li>
           <li><a href="#">Blog</a></li>
           <li><a href="#">Contacto</a></li>
+          <li class="dropdown"><a href="#"><img src="{{ asset('img/log.png') }}" alt="Image" class="img-fluid" style="max-width: 40px; max-height: 40px;">
+          <i class="bi toggle-dropdown"></i></a>
+            <ul>
+              @if(Auth::check())
+              <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
+              <li>
+                <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
+              </li>
+              @else
+              <li><a href="{{ route('register') }}">Registrarse</a></li>
+              <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
+              @endif
+            </ul>
+          </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
