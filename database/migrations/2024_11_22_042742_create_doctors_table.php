@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('especialidad');
             $table->string('cedula')->unique();
             $table->string('consultorio')->nullable();
-            $table->text('about')->nullable();
+            $table->text('acerca')->nullable();
+            $table->string('ruta_archivo');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }

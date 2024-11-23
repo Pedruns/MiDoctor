@@ -50,7 +50,9 @@
           <li><a href="#">Portaforlio</a></li>
           <li><a href="#">Equipo</a></li>
           <li><a href="#">Blog</a></li>
-          <li><a href="#">Contacto</a></li>
+          @role('paciente')
+          <li><a href="#">Unirse como doctor</a></li>
+          @endrole
           <li class="dropdown"><a href="#"><img src="{{ asset('img/log.png') }}" alt="Image" class="img-fluid" style="max-width: 40px; max-height: 40px;">
           <i class="bi toggle-dropdown"></i></a>
             <ul>

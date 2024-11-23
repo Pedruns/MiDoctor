@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->date('fecha');
             $table->time('hora');
             $table->string('estado');
@@ -18,6 +17,8 @@ return new class extends Migration
             $table->text('notas');
             $table->foreignId('paciente_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('medico_id')->constrained('users')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
