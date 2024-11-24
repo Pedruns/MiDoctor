@@ -49,6 +49,7 @@ class FormularioMedico extends Component
         $doctor->acerca = $this->acerca;
         $doctor->ruta_archivo = $this->ruta_archivo->store('');
         $doctor->user_id = Auth::id();
+        $doctor->estado = "pendiente";
         $doctor->save();     
 
         session()->flash('message', 'Formulario guardado exitosamente.');

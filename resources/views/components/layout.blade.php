@@ -51,6 +51,9 @@
           <li><a href="#">Portaforlio</a></li>
           <li><a href="#">Equipo</a></li>
           <li><a href="#">Blog</a></li>
+          @role('moderador')
+          <li><a href="/revisarSolicitudes">Revisar Solicitudes</a></li>
+          @endrole
           @role('paciente')
           <li><a href="/formularioMedico">Unirse como doctor</a></li>
           @endrole

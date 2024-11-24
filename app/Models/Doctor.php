@@ -12,6 +12,8 @@ class Doctor extends Model
         'cedula',
         'consultorio',
         'acerca',
+        'ruta_archivo',
+        'estado',
     ];
 
     // Relación uno a uno inversa con User

@@ -16,6 +16,10 @@ Route::get('/formularioMedico', function () {
     return view('formularioMedico');
 });
 
+Route::get('/revisarSolicitudes', function () {
+    return view('revisarSolicitudes');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
