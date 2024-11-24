@@ -27,6 +27,7 @@
 
   <!-- Main CSS File -->
   <link rel="stylesheet" href="{{asset('css/main.css')}}">
+  @livewireStyles
 
 
 </head>
@@ -51,17 +52,16 @@
           <li><a href="#">Equipo</a></li>
           <li><a href="#">Blog</a></li>
           @role('paciente')
-          <li><a href="#">Unirse como doctor</a></li>
+          <li><a href="/formularioMedico">Unirse como doctor</a></li>
           @endrole
           <li class="dropdown"><a href="#"><img src="{{ asset('img/log.png') }}" alt="Image" class="img-fluid" style="max-width: 40px; max-height: 40px;">
-          <i class="bi toggle-dropdown"></i></a>
+              <i class="bi toggle-dropdown"></i></a>
             <ul>
               @if(Auth::check())
-              <form method="POST" action="{{ route('logout') }}" x-data>
-                @csrf
               <li>
                 <a href="{{ route('logout') }}"
-                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  Cerrar sesión
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
@@ -82,8 +82,8 @@
 
   <main class="main">
 
-
-    {{$slot}}
+    
+      {{$slot}}
 
 
   </main>
@@ -204,6 +204,7 @@
 
   <!-- Main JS File -->
   <script src="{{asset('js/main.js')}}"></script>
+  @livewireScripts
   <!-- <script src="assets/js/main.js"></script> -->
 
 </body>

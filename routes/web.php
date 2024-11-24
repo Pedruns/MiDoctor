@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CitaController;
+use App\Livewire\FormularioDoctor;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,6 +11,10 @@ Route::get('/', function () {
 Route::post('/citas', [CitaController::class, 'store'])->middleware('auth');
 
 Route::resource('cita', CitaController::class);
+
+Route::get('/formularioMedico', function () {
+    return view('formularioMedico');
+});
 
 Route::middleware([
     'auth:sanctum',

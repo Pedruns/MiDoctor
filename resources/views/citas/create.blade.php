@@ -1,6 +1,5 @@
 <x-layout title="Nueva Cita">
-    <!-- Contact Section -->
-    <section id="contact" class="site-section container p-4 bg-light rounded shadow">
+    <section class="site-section container p-4 bg-light rounded shadow">
         <div class="container" data-aos="fade">
             <div class="row gy-5 gx-lg-5">
                 <div class="col-md-8 blog-content mx-auto">
