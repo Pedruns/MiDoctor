@@ -15,7 +15,7 @@ class CitaController extends Controller
     public function index()
     {
         $citas = Cita::with('medico')->where('paciente_id', Auth::id())->get();
-        return view('citas.index', compact('citas'));
+        return view('cita.index', compact('citas'));
     }
 
     /**
@@ -51,41 +51,60 @@ class CitaController extends Controller
             
             $cita->save();
 
-            return view('bienvenida');
+            return redirect()->action([CitaController::class, 'index']);
+        }
+        return back();
+    }
+
+    // public function show(Cita $cita)
+    // {
+    //     //
+    // }
+
+    public function edit($cita_id)
+    {
+        $cita=Cita::findOrFail($cita_id);
+        return view('cita.editar', compact('cita'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $cita_id)
+    {
+        $cita=Cita::findOrFail($cita_id);
+        if(Auth::user()){
+            $request->validate([
+                'fecha' => 'required|date',
+                'hora' => 'required|date_format:H:i',
+                'tipo' => 'required|string|in:Presencial,En linea',
+                'notas' => 'required|string',
+            ]);
+
+
+            $cita->fecha = $request->fecha;
+            $cita->hora = $request->hora;
+            $cita->tipo = $request->tipo;
+            $cita->notas = $request->notas;
+            $cita->estado = "pendiente";
+            $cita->paciente_id = Auth::id();
+            $cita->medico_id = $request->medico_id;
+            
+            $cita->save();
+
+            return redirect()->action([CitaController::class, 'index']);
         }
         dd($request);
         return back();
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Cita $cita)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cita $cita)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cita $cita)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cita $cita)
+    public function destroy($cita_id)
     {
-        //
+        $cita=Cita::findOrFail($cita_id);
+        $cita->delete();
+        return back();
     }
 }

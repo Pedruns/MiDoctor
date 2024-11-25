@@ -46,7 +46,12 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="/">Inicio</a></li>
-          <li><a href="#">Servicios</a></li>
+          @role('medico')
+          <li><a href="/citasMedicos">Citas</a></li>
+          @endrole
+          @if(Auth::check())
+          <li><a href="{{route('cita.index')}}">Mis citas</a></li>
+          @endif
           <li><a href="/buscarMedicos">Medicos</a></li>
           @role('moderador')
           <li><a href="/revisarSolicitudes">Revisar Solicitudes</a></li>

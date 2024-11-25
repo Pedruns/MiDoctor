@@ -14,13 +14,20 @@
                                 <strong>Medico:</strong> {{ $cita->medico->name}}<br>
                                 <strong>Fecha:</strong> {{ $cita->fecha }}<br>
                                 <strong>Hora:</strong> {{ $cita->hora }}<br>
-                                <strong>Estado:</strong> <span class="badge bg-primary">{{ $cita->estado }}</span><br>
+                                <strong>Estado:</strong>
+                                <span class="badge 
+                                    @if ($cita->estado === 'pendiente') bg-warning 
+                                    @elseif ($cita->estado === 'confirmada') bg-success 
+                                    @elseif ($cita->estado === 'cancelada') bg-danger 
+                                    @else bg-secondary @endif">
+                                    {{ $cita->estado }}
+                                </span><br>
                                 <strong>Notas:</strong> {{ $cita->notas ?: 'Sin notas adicionales' }}
                             </p>
                         </div>
                         <div class="card-footer d-flex justify-content-start align-items-center gap-2">
-                            <a href="#" class="btn btn-outline-primary btn-sm">Editar</a>
-                            <form action="#" method="POST" class="mb-0">
+                            <a href="{{ route('cita.edit', $cita) }}" class="btn btn-outline-primary btn-sm">Editar</a>
+                            <form action="{{ route('cita.destroy', $cita) }}" method="POST" class="mb-0">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger btn-sm">Cancelar</button>
