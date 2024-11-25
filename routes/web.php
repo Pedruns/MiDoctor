@@ -9,6 +9,7 @@ Route::get('/', function () {
 })->name('bienvenida');
 
 Route::post('/citas', [CitaController::class, 'store'])->middleware('auth');
+Route::get('/cita/crear/{medico}', [CitaController::class, 'crear'])->name('cita.crear');
 
 Route::resource('cita', CitaController::class);
 
@@ -18,6 +19,10 @@ Route::get('/formularioMedico', function () {
 
 Route::get('/revisarSolicitudes', function () {
     return view('revisarSolicitudes');
+});
+
+Route::get('/buscarMedicos', function () {
+    return view('buscarMedicos');
 });
 
 Route::middleware([

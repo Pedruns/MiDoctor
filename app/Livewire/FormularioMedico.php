@@ -23,14 +23,6 @@ class FormularioMedico extends Component
         return view('livewire.formulario-medico');
     }
 
-    // private function clearFields(){
-    //     $this->especialidad = '';
-    //     $this->cedula = '';
-    //     $this->consultorio = '';
-    //     $this->acerca = '';
-    //     $this->ruta_archivo = null;
-    // }
-
     public function guardarFormulario(){
         $this->validate([
             'especialidad' => 'required|string',
@@ -53,9 +45,7 @@ class FormularioMedico extends Component
         $doctor->save();     
 
         session()->flash('message', 'Formulario guardado exitosamente.');
-
-        // Limpiar los campos
-        // $this->clearFields();     
+   
         return redirect()->route('bienvenida');  
     }
 }

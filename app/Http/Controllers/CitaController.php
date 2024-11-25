@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cita;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,9 @@ class CitaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function crear(User $medico)
     {
-        return view('citas.create');
+        return view('cita.crear', compact('medico'));
     }
 
     /**
@@ -46,7 +47,7 @@ class CitaController extends Controller
             $cita->notas = $request->notas;
             $cita->estado = "pendiente";
             $cita->paciente_id = Auth::id();
-            $cita->medico_id = 2;
+            $cita->medico_id = $request->medico_id;
             
             $cita->save();
 

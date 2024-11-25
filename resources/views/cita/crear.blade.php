@@ -15,6 +15,7 @@
                     <h1 class="mb-4 text-center font-weight-bold text-primary">Crear una cita con el doctor ...</h1>
                     <form action="{{ route('cita.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="medico_id" value="{{ $medico->id }}">
                         <div class="form-group mt-4">
                             <label for="fecha" class="font-weight-bold">Elige el dia que necesitas la cita</label>
                             <input type="date" class="form-control border-primary" name="fecha" id="fecha" value="{{ old('fecha') }}" required="">

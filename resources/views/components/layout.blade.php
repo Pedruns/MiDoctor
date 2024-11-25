@@ -45,12 +45,9 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#" class="active">Inicio</a></li>
-          <li><a href="#">Acerca</a></li>
+          <li><a href="/">Inicio</a></li>
           <li><a href="#">Servicios</a></li>
-          <li><a href="#">Portaforlio</a></li>
-          <li><a href="#">Equipo</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="/buscarMedicos">Medicos</a></li>
           @role('moderador')
           <li><a href="/revisarSolicitudes">Revisar Solicitudes</a></li>
           @endrole
