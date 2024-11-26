@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -64,6 +65,7 @@ class CitaController extends Controller
     public function edit($cita_id)
     {
         $cita=Cita::findOrFail($cita_id);
+        Gate::authorize('propietario',$cita);
         return view('cita.editar', compact('cita'));
     }
 
@@ -104,6 +106,7 @@ class CitaController extends Controller
     public function destroy($cita_id)
     {
         $cita=Cita::findOrFail($cita_id);
+        Gate::authorize('propietario',$cita);
         $cita->delete();
         return back();
     }

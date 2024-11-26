@@ -8,20 +8,21 @@ Route::get('/', function () {
     return view('bienvenida');
 })->name('bienvenida');
 
-Route::resource('cita', CitaController::class);
-Route::get('/cita/crear/{medico}', [CitaController::class, 'crear'])->name('cita.crear');
-
+Route::middleware(['auth'])->group(function () {
+    Route::resource('cita', CitaController::class);
+    Route::get('/cita/crear/{medico}', [CitaController::class, 'crear'])->name('cita.crear');
+});
 Route::get('/formularioMedico', function () {
     return view('formularioMedico');
-});
+})->middleware('role:paciente');
 
 Route::get('/revisarSolicitudes', function () {
     return view('revisarSolicitudes');
-});
+})->middleware('role:moderador');
 
 Route::get('/citasMedicos', function () {
     return view('citasMedicos');
-});
+})->middleware('role:medico');
 
 Route::get('/buscarMedicos', function () {
     return view('buscarMedicos');
