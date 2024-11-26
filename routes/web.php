@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\HorarioController;
 use App\Livewire\FormularioDoctor;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('cita', CitaController::class);
     Route::get('/cita/crear/{medico}', [CitaController::class, 'crear'])->name('cita.crear');
 });
+
+Route::resource('horario', HorarioController::class)->middleware('role:medico');
+
 Route::get('/formularioMedico', function () {
     return view('formularioMedico');
 })->middleware('can:create,App\Models\Doctor');

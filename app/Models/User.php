@@ -84,4 +84,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Doctor::class);
     }
+    public function horario()
+    {
+        return $this->hasOne(Horario::class);
+    }
 }

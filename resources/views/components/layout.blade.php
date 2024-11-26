@@ -47,6 +47,7 @@
           <li><a href="/">Inicio</a></li>
           @role('medico')
           <li><a href="/citasMedicos">Citas</a></li>
+          <li><a href="{{route('horario.index')}}">Dias</a></li>
           @endrole
           @if(Auth::check())
           <li><a href="{{route('cita.index')}}">Mis citas</a></li>
