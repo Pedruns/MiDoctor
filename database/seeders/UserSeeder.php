@@ -61,5 +61,6 @@ class UserSeeder extends Seeder
             'current_team_id' => null,
         ]);
         $user3->assignRole('medico');
+        
     }
 }

@@ -35,8 +35,6 @@ class FormularioMedico extends Component
             'ruta_archivo' => 'required|file|mimes:pdf,jpg,png|max:2048',
         ]);
 
-
-
         $doctor = new Doctor();
         $doctor->especialidad = $this->especialidad;
         $doctor->cedula = $this->cedula;
