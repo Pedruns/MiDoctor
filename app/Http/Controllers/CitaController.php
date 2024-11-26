@@ -32,29 +32,26 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()){
-            $request->validate([
-                'fecha' => 'required|date',
-                'hora' => 'required|date_format:H:i',
-                'tipo' => 'required|string|in:Presencial,En linea',
-                'notas' => 'required|string',
-            ]);
+        $request->validate([
+            'fecha' => 'required|date',
+            'hora' => 'required|date_format:H:i',
+            'tipo' => 'required|string|in:Presencial,En linea',
+            'notas' => 'required|string',
+        ]);
 
-            $cita = new Cita();
+        $cita = new Cita();
 
-            $cita->fecha = $request->fecha;
-            $cita->hora = $request->hora;
-            $cita->tipo = $request->tipo;
-            $cita->notas = $request->notas;
-            $cita->estado = "pendiente";
-            $cita->paciente_id = Auth::id();
-            $cita->medico_id = $request->medico_id;
-            
-            $cita->save();
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->tipo = $request->tipo;
+        $cita->notas = $request->notas;
+        $cita->estado = "pendiente";
+        $cita->paciente_id = Auth::id();
+        $cita->medico_id = $request->medico_id;
 
-            return redirect()->action([CitaController::class, 'index']);
-        }
-        return back();
+        $cita->save();
+
+        return redirect()->action([CitaController::class, 'index']);
     }
 
     // public function show(Cita $cita)
@@ -64,8 +61,8 @@ class CitaController extends Controller
 
     public function edit($cita_id)
     {
-        $cita=Cita::findOrFail($cita_id);
-        Gate::authorize('propietario',$cita);
+        $cita = Cita::findOrFail($cita_id);
+        Gate::authorize('propietario', $cita);
         return view('cita.editar', compact('cita'));
     }
 
@@ -74,30 +71,26 @@ class CitaController extends Controller
      */
     public function update(Request $request, $cita_id)
     {
-        $cita=Cita::findOrFail($cita_id);
-        if(Auth::user()){
-            $request->validate([
-                'fecha' => 'required|date',
-                'hora' => 'required|date_format:H:i',
-                'tipo' => 'required|string|in:Presencial,En linea',
-                'notas' => 'required|string',
-            ]);
+        $cita = Cita::findOrFail($cita_id);
+        $request->validate([
+            'fecha' => 'required|date',
+            'hora' => 'required|date_format:H:i',
+            'tipo' => 'required|string|in:Presencial,En linea',
+            'notas' => 'required|string',
+        ]);
 
 
-            $cita->fecha = $request->fecha;
-            $cita->hora = $request->hora;
-            $cita->tipo = $request->tipo;
-            $cita->notas = $request->notas;
-            $cita->estado = "pendiente";
-            $cita->paciente_id = Auth::id();
-            $cita->medico_id = $request->medico_id;
-            
-            $cita->save();
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->tipo = $request->tipo;
+        $cita->notas = $request->notas;
+        $cita->estado = "pendiente";
+        $cita->paciente_id = Auth::id();
+        $cita->medico_id = $request->medico_id;
 
-            return redirect()->action([CitaController::class, 'index']);
-        }
-        dd($request);
-        return back();
+        $cita->save();
+
+        return redirect()->action([CitaController::class, 'index']);
     }
 
     /**
@@ -105,8 +98,8 @@ class CitaController extends Controller
      */
     public function destroy($cita_id)
     {
-        $cita=Cita::findOrFail($cita_id);
-        Gate::authorize('propietario',$cita);
+        $cita = Cita::findOrFail($cita_id);
+        Gate::authorize('propietario', $cita);
         $cita->delete();
         return back();
     }

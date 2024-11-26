@@ -37,9 +37,8 @@
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="/" class="logo d-flex align-items-center">
+        <i class="bi bi-calendar-check text-primary-green me-2"></i>
         <h1 class="sitename">MiDoctor</h1>
       </a>
 
@@ -87,13 +86,38 @@
 
   <main class="main">
 
-    
-      {{$slot}}
+
+    {{$slot}}
 
 
   </main>
 
-  
+  <footer class="py-4 border-top">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="text-muted small mb-md-0">
+            © 2024 MiDoctor. Todos los derechos reservados.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-inline text-md-end mb-0">
+            <li class="list-inline-item">
+              <a class="text-muted small" href="#">
+                Términos de servicio
+              </a>
+            </li>
+            <li class="list-inline-item ms-3">
+              <a class="text-muted small" href="#">
+                Privacidad
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

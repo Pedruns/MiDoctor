@@ -2,11 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Mail\ConfirmarCitaMail;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Cita;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
@@ -66,17 +69,23 @@ class CitasTable extends DataTableComponent
     public function confirmar($id)
     {
         $cita = Cita::find($id);
+        $user = User::find($cita->paciente_id);
 
         if ($cita) {
             $cita->update(['estado' => 'confirmada']);
         }
+
+        Mail::to($user->email)->send(new ConfirmarCitaMail($cita));
     }
     public function cancelar($id)
     {
         $cita = Cita::find($id);
+        $user = User::find($cita->paciente_id);
 
         if ($cita) {
             $cita->update(['estado' => 'cancelada']);
         }
+
+        Mail::to($user->email)->send(new ConfirmarCitaMail($cita));
     }
 }
