@@ -8,11 +8,13 @@
                 MiDoctor te permite agendar y gestionar citas médicas de forma rápida y sencilla,
                 ya seas médico o paciente.
             </p>
+            @if(!Auth::check())
             <div class="d-flex gap-3 justify-content-center">
                 <a href="{{ route('register') }}" class="btn btn-primary btn-md px-5 py-2">
                     Registrarse
                 </a>
             </div>
+            @endif
         </div>
     </section>
 
@@ -110,9 +112,11 @@
             <p class="lead text-muted mb-5 mx-auto" style="max-width: 700px;">
                 Únete a MiDoctor y experimenta una nueva forma de manejar tus citas médicas.
             </p>
+            @if(!Auth::check())
             <a href="{{ route('register') }}" class="btn btn-primary btn-md px-5 py-2">
                 Registrarse ahora
             </a>
+            @endif
         </div>
     </section>
 </x-layout>
