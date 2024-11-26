@@ -14,7 +14,7 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/formularioMedico', function () {
     return view('formularioMedico');
-})->middleware('role:paciente');
+})->middleware('can:create,App\Models\Doctor');
 
 Route::get('/revisarSolicitudes', function () {
     return view('revisarSolicitudes');

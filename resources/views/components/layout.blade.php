@@ -56,7 +56,9 @@
           <li><a href="/revisarSolicitudes">Revisar Solicitudes</a></li>
           @endrole
           @role('paciente')
+          @if(!App\Models\Doctor::where('user_id', auth()->id())->exists())
           <li><a href="/formularioMedico">Unirse como doctor</a></li>
+          @endif
           @endrole
           <li class="dropdown"><a href="#"><img src="{{ asset('img/log.png') }}" alt="Image" class="img-fluid" style="max-width: 40px; max-height: 40px;">
               <i class="bi toggle-dropdown"></i></a>

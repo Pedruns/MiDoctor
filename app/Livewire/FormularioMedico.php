@@ -6,6 +6,7 @@ use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 
 
 class FormularioMedico extends Component
@@ -24,6 +25,8 @@ class FormularioMedico extends Component
     }
 
     public function guardarFormulario(){
+        
+        Gate::authorize('create', Doctor::class);
         $this->validate([
             'especialidad' => 'required|string',
             'cedula' => 'required|string',
